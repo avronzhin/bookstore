@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success add book</title>
+    <link th:href="@{/styles/stylesheet.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>The book has been successfully added!</h1>
+</div>
+<div class="container">
+    <form method="post" th:object="${book}">
+        <h2>Book info:</h2>
+        <div class="container">
+            <span>Name:</span>
+            <span th:text="*{name}"></span>
+        </div>
+        <div class="container">
+            <span>Author:</span>
+            <span th:text="*{author}"></span>
+        </div>
+        <div class="container" th:if="${not #lists.isEmpty(book.genres)}">
+            <span>Genres:</span>
+            <ul>
+                <li th:each="genre : *{genres}" th:text="${genre.title}"></li>
+            </ul>
+        </div>
+        <div class="container">
+            <span>Publish year:</span>
+            <span th:text="*{publishYear}"></span>
+        </div>
+        <button>Complete</button>
+    </form>
+</div>
+</body>
+</html>
