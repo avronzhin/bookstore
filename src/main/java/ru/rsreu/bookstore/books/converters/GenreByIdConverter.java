@@ -17,6 +17,6 @@ public class GenreByIdConverter implements Converter<String, Genre> {
 
     @Override
     public Genre convert(String id) {
-        return genreRepository.findById(id).orElse(null);
+        return genreRepository.getById(id).orElse(null);
     }
 }

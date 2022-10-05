@@ -1,6 +1,13 @@
 package ru.rsreu.bookstore.books.repositories;
 
-import org.springframework.data.repository.CrudRepository;
 import ru.rsreu.bookstore.books.models.Genre;
 
-public interface GenreRepository extends CrudRepository<Genre, String> {}
+import java.util.Optional;
+
+public interface GenreRepository{
+    Iterable<Genre> getAll();
+
+    Optional<Genre> getById(String id);
+
+    Genre save(Genre genre);
+}

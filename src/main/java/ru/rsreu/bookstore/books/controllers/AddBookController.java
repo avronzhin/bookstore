@@ -31,7 +31,7 @@ public class AddBookController {
 
     @ModelAttribute
     public void addGenresToModel(Model model) {
-        Iterable<Genre> genres = genreRepository.findAll();
+        Iterable<Genre> genres = genreRepository.getAll();
         model.addAttribute("genres", genres);
     }
 
