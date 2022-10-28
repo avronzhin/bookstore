@@ -2,6 +2,7 @@ package ru.rsreu.bookstore.books.models;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
+import ru.rsreu.bookstore.security.models.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,4 +33,7 @@ public class Book{
 
     @Range(min = 1700, max = 2100, message = "Publish year must be between 1700 and 2100")
     private int publishYear = 2022;
+
+    @ManyToOne
+    private User publisher;
 }

@@ -1,11 +1,13 @@
-package ru.rsreu.bookstore.books.repositories;
+package ru.rsreu.bookstore.books.configurations;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import ru.rsreu.bookstore.books.models.Genre;
+import ru.rsreu.bookstore.books.repositories.GenreRepository;
 
-@org.springframework.context.annotation.Configuration
-public class ApplicationConfiguration {
+@Configuration
+public class DataLoaderConfiguration {
     @Bean
     public ApplicationRunner dataLoader(GenreRepository repo) {
         return args -> {

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<taglib prefix="sec" uri="http://www.springframework.org/security/tags">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +7,22 @@
     <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
 </head>
 <body>
+
+<div sec:authorize="isAuthenticated()">
+    <button>
+        <a href="/logout">
+            Выйти
+        </a>
+    </button>
+</div>
+<div sec:authorize="isAnonymous()">
+    <button>
+        <a href="/login">
+            Войти
+        </a>
+    </button>
+</div>
+
 <div class="center">
     <img th:src="@{/images/books.png}" width="80%" />
     <h1>Welcome to bookstore!</h1>

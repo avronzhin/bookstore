@@ -2,14 +2,17 @@ package ru.rsreu.bookstore.books.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import ru.rsreu.bookstore.books.models.Book;
 import ru.rsreu.bookstore.books.models.Genre;
 import ru.rsreu.bookstore.books.repositories.BookRepository;
 import ru.rsreu.bookstore.books.repositories.GenreRepository;
+import ru.rsreu.bookstore.security.models.User;
 
 import javax.validation.Valid;
 
@@ -17,17 +20,15 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/book/add")
 @SessionAttributes("book")
-public class AddBookController {
-
+public class BookAddingController {
     private final GenreRepository genreRepository;
     private final BookRepository bookRepository;
 
     @Autowired
-    public AddBookController(GenreRepository genreRepository, BookRepository bookRepository) {
+    public BookAddingController(GenreRepository genreRepository, BookRepository bookRepository) {
         this.genreRepository = genreRepository;
         this.bookRepository = bookRepository;
     }
-
 
     @ModelAttribute
     public void addGenresToModel(Model model) {
@@ -42,15 +43,24 @@ public class AddBookController {
 
     @GetMapping
     public String showAddBookForm() {
-        return "add_book";
+        return "book_adding";
     }
 
     @PostMapping
-    public String addBook(@Valid Book book, Errors errors) {
+    public String addBook(
+            @Valid Book book,
+            Errors errors,
+            SessionStatus sessionStatus,
+            @AuthenticationPrincipal User user
+    ) {
         if (errors.hasErrors()) {
-            return "add_book";
+            return "book_adding";
         }
+
+        book.setPublisher(user);
+
         bookRepository.save(book);
-        return "redirect:/book/add/success";
+        sessionStatus.setComplete();
+        return "redirect:/";
     }
 }
