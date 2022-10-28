@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore</title>
+    <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h1>Books</h1>
+    <div th:each="book : ${books}">
+        <div class="container">
+            <h3>
+                <span th:text="${book.name}"></span> by <span th:text="${book.author}"></span>
+            </h3>
+            Publish year: <span th:text="${book.publishYear}"></span><br/>
+            <div th:if="${not #lists.isEmpty(book.genres)}">
+                <span th:text="${book.getGenresText}"></span>
+            </div>
+            Publish by <span th:text="${book.publisher.username}"></span>
+        </div>
+    </div>
+        <a href="/book/add" class="button"><button>Add new</button></a>
+</div>
+</body>
+</html>

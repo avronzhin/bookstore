@@ -15,3 +15,7 @@ body {
 .validationError{
     color: red;
 }
+
+.button {
+    margin: 5px;
+}

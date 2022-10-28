@@ -31,16 +31,22 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
+
                 .authorizeRequests()
                 .antMatchers("/book/**/").hasAuthority("USER")
                 .antMatchers("/", "/**").permitAll()
                 .and()
+
                 .formLogin()
                 .loginPage("/login")
                 .and()
+
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
+
                 .and()
                 .build();
     }
