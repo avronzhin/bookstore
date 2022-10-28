@@ -1,27 +1,30 @@
 package ru.rsreu.bookstore.security.models;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.*;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.UUID;
 
 @Data
-@Entity(name = "users")
+@Table("users")
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
-@RequiredArgsConstructor
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-    private final String username;
-    private final String password;
+    @PrimaryKey
+    private UUID id = Uuids.timeBased();
+    private String username;
+    private String password;
+
+    public User(String username, String password){
+        this.password = password;
+        this.username = username;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

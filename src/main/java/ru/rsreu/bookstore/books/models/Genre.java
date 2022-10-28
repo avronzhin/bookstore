@@ -3,16 +3,16 @@ package ru.rsreu.bookstore.books.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Data
-@Entity
+@Table("genres")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Genre {
-    @Id
+    @PrimaryKey
     private String id;
     private String title;
 }

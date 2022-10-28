@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.rsreu.bookstore.security.models.User;
 import ru.rsreu.bookstore.security.registration.RegistrationForm;
 import ru.rsreu.bookstore.security.repositories.UserRepository;
 
@@ -27,7 +28,9 @@ public class RegistrationController {
 
     @PostMapping
     public String processRegistration(RegistrationForm form){
-        userRepository.save(form.toUser(passwordEncoder));
+        User user = form.toUser(passwordEncoder);
+        System.out.println(user);
+        userRepository.save(user);
         return "redirect:/login";
     }
 }
