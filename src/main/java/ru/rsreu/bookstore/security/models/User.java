@@ -1,6 +1,8 @@
 package ru.rsreu.bookstore.security.models;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,13 +14,16 @@ import java.util.Collections;
 
 @Data
 @Document(collection = "users")
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class User implements UserDetails {
     @Id
     private String id;
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
