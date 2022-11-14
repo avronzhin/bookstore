@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/book/**/").hasAuthority("USER")
+                .antMatchers("/book/add/").hasAuthority("USER")
                 .antMatchers("/", "/**").permitAll()
                 .and()
 
