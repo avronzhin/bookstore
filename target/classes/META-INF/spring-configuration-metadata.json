@@ -1,0 +1,16 @@
+{
+  "group": [
+    {
+      "name": "books",
+      "type": "ru.rsreu.bookstore.books.controllers.BookControllerProps",
+      "sourceType": "ru.rsreu.bookstore.books.controllers.BookControllerProps"
+    }
+  ],
+  "properties": [
+    {
+      "name": "books.page-size",
+      "type": "java.lang.Integer",
+      "description": "Description for books.page-size."
+    }
+  ]
+}
