@@ -1,6 +1,6 @@
-package ru.rsreu.bookstore.books.repositories;
+package ru.rsreu.bookstore.api.books.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.rsreu.bookstore.books.models.Genre;
+import ru.rsreu.bookstore.api.books.models.Genre;
 
 public interface GenreRepository extends CrudRepository<Genre, String> {}

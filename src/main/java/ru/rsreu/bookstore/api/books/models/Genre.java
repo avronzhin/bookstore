@@ -1,4 +1,4 @@
-package ru.rsreu.bookstore.books.models;
+package ru.rsreu.bookstore.api.books.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
