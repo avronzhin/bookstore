@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Bookstore</title>
+</head>
+
+<body>
+<h2>Bookstore Admin: Genres</h2>
+
+<form method="POST" th:action="@{/admin/genres}">
+    ID: <input type="text" name="id"></input><br/>
+    Name: <input type="text" name="title"></input><br/>
+    <input type="submit" />
+</form>
+
+<hr/>
+
+<ul>
+    <li th:each="genre: ${genres}" th:text="${genre.title}"></li>
+</ul>
+</body>
+</html>

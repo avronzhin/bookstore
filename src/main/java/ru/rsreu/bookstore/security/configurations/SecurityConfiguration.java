@@ -2,7 +2,9 @@ package ru.rsreu.bookstore.security.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,23 +32,26 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
-                .headers().frameOptions().disable()
-                .and()
-
                 .authorizeRequests()
-                .antMatchers("/book/add/").hasAuthority("USER")
-                .antMatchers("/", "/**").permitAll()
-                .and()
-
-                .formLogin()
-                .loginPage("/login")
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers(HttpMethod.POST, "/api/genres/**")
+                .hasAuthority("SCOPE_writeGenres")
+                .antMatchers(HttpMethod.DELETE, "/api/genres/**")
+                .hasAuthority("SCOPE_deleteGenres")
+                .antMatchers("/**")
+                .permitAll()
                 .and()
 
                 .logout()
-                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
 
+                .and()
+                .csrf()
+                .ignoringAntMatchers("/h2-console/**", "/api/**")
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
                 .and()
                 .build();
     }
