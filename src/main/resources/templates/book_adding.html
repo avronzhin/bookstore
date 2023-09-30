@@ -6,10 +6,10 @@
     <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>Adding a new book</h1>
+<h1>Добавление книги</h1>
 <form method="post" th:object="${book}">
     <div class="container">
-        <label>Name
+        <label>Имя
             <input type="text" th:field="*{name}"/>
         </label>
         <br/>
@@ -17,14 +17,14 @@
               th:errors="*{name}">Name error</span>
     </div>
     <div class="container">
-        <label>Author
+        <label>Автор
             <input type="text" th:field="*{author}"/>
         </label><br/>
         <span class="validationError" th:if="${#fields.hasErrors('author')}"
               th:errors="*{author}">Author error</span>
     </div>
     <div class="container">
-        <label>Genres
+        <label>Жанры
             <div th:each="genre : ${genres}">
                 <input th:field="*{genres}" type="checkbox" th:value="${genre.id}"/>
                 <span th:text="${genre.title}"></span><br/>
@@ -34,13 +34,13 @@
         </label>
     </div>
     <div class="container">
-        <label>Publish year
+        <label>Год выпуска
             <input type="number" th:field="*{publishYear}"/>
         </label><br/>
         <span class="validationError" th:if="${#fields.hasErrors('publishYear')}"
               th:errors="*{publishYear}">PublishYear error</span>
     </div>
-    <button>Add</button>
+    <button>Добавить</button>
 </form>
 </body>
 </html>

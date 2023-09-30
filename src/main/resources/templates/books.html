@@ -7,20 +7,24 @@
 </head>
 <body>
 <div class="container">
-    <h1>Books</h1>
+    <h1>Книги</h1>
     <div th:each="book : ${books}">
         <div class="container">
             <h3>
-                <span th:text="${book.name}"></span> by <span th:text="${book.author}"></span>
+                <span th:text="${book.name}"></span> от <span th:text="${book.author}"></span>
             </h3>
-            Publish year: <span th:text="${book.publishYear}"></span><br/>
+            Год выпуска: <span th:text="${book.publishYear}"></span><br/>
             <div th:if="${not #lists.isEmpty(book.genres)}">
                 <span th:text="${book.getGenresText}"></span>
             </div>
-            Publish by <span th:text="${book.publisher.username}"></span>
+            Опубликовал: <span th:text="${book.publisher.username}"></span>
+            <form action="/book/delete" method="post">
+                <input type="hidden" name="bookId" th:value="${book.id}" />
+                <button type="submit">Удалить</button>
+            </form>
         </div>
     </div>
-        <a href="/book/add" class="button"><button>Add new</button></a>
+        <a href="/book/add" class="button"><button>Добавить новую</button></a>
 </div>
 </body>
 </html>

@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <taglib prefix="sec" uri="http://www.springframework.org/security/tags">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
-</head>
-<body>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <link th:href="@{/styles/stylesheet.css}" rel="stylesheet"/>
+    </head>
+    <body>
 
-<div sec:authorize="isAuthenticated()">
-    Hello <span sec:authentication="name"/>!
-    <a href="/logout" class="button"><button>Logout</button></a>
-</div>
-<div sec:authorize="isAnonymous()">
-    <a href="/login"><button>Login</button></a>
-</div>
-
-<div class="center">
-    <img th:src="@{/images/books.png}" width="80%" />
-    <h1>Welcome to bookstore!</h1>
-    <div class="container">
-        <a href="/book/add" class="button"><button>Add book</button></a>
-        <a href="/book/all" class="button"><button>Books</button></a>
+    <div sec:authorize="isAuthenticated()">
+        Добрый день, <span sec:authentication="name"/>!
+        <a href="/logout" class="button">
+            <button>Выйти</button>
+        </a>
     </div>
-</div>
+    <div sec:authorize="isAnonymous()">
+        <a href="/login">
+            <button>Войти</button>
+        </a>
+    </div>
 
-</body>
-</html>
+    <div class="center">
+        <img th:src="@{/images/books.png}" width="80%"/>
+        <h1>Добро пожаловать в BookStore!</h1>
+        <div class="container">
+            <a href="/book/add" class="button">
+                <button>Новая книга</button>
+            </a>
+            <a href="/book/all" class="button">
+                <button>Все книги</button>
+            </a>
+        </div>
+    </div>
+
+    </body>
+    </html>

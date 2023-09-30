@@ -39,7 +39,7 @@ public class Book{
     private User publisher;
 
     public String getGenresText(){
-        return "Genres: " +
+        return "Жанры: " +
                 genres.stream().map(Genre::getTitle).collect(Collectors.joining(", ")) +
                 ".";
     }

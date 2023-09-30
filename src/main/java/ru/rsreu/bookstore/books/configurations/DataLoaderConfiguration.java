@@ -11,11 +11,11 @@ public class DataLoaderConfiguration {
     @Bean
     public ApplicationRunner dataLoader(GenreRepository repo) {
         return args -> {
-            repo.save(new Genre("DET", "detective"));
-            repo.save(new Genre("HN", "historical novel"));
-            repo.save(new Genre("LS", "love story"));
-            repo.save(new Genre("MY", "mystic"));
-            repo.save(new Genre("ADV", "adventures"));
+            repo.save(new Genre("DET", "детектив"));
+            repo.save(new Genre("HN", "исторический роман"));
+            repo.save(new Genre("LS", "любовный роман"));
+            repo.save(new Genre("MY", "мистика"));
+            repo.save(new Genre("ADV", "приключения"));
         };
     }
 }
