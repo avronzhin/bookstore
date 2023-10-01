@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookSearch {
-    private String bookNameSearch = "";
-    private String authorSearch = "";
+public class ErrorMessage {
+    private String message = "";
 }

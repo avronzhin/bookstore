@@ -8,6 +8,15 @@
 <body>
 <div class="container">
     <h1>Книги</h1>
+    <div th:if="${bookSearch.bookNameSearch != ''}">
+        <p>Поиск по названию книги: <a th:text="${bookSearch.bookNameSearch}"></a></p>
+    </div>
+    <div th:if="${bookSearch.authorSearch != ''}">
+        <p>Поиск по автору: <a th:text="${bookSearch.authorSearch}"></a></p>
+    </div>
+    <div>
+        <span th:text="${errorMessage}" class="validationError"></span>
+    </div>
     <div th:each="book : ${books}">
         <div class="container">
             <h3>
