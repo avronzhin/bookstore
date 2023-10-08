@@ -11,4 +11,5 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber",
                 "junit:target/surefire-reports/junit-report.xml"})
 public class RunnerTest {
+
 }
