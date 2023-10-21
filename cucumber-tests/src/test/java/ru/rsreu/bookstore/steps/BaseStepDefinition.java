@@ -23,6 +23,13 @@ public class BaseStepDefinition {
         button.click();
     }
 
+    @Then("пользователь нажимает на ссылку {string}")
+    public void pressLink(String linkValue){
+        var xPath = "//a[text()='" + linkValue + "']";
+        var link = Selenide.$x(xPath);
+        link.click();
+    }
+
     @Then("открыта страница {string}")
     public void pageIsOpen(String pageUrl) {
         var currentUrl = Selenide.webdriver().driver().url();
