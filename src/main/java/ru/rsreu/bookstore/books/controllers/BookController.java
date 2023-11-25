@@ -32,6 +32,13 @@ public class BookController {
             if (!bookSearch.getAuthor().isEmpty()) {
                 return book.getAuthor().contains(bookSearch.getAuthor());
             }
+            if (!bookSearch.getGenre().isEmpty()) {
+                return book.getGenres().stream()
+                        .map(Genre::getTitle)
+                        .collect(Collectors.toList())
+                        .contains(bookSearch.getGenre());
+            }
+            
             return true;
         };
     }
