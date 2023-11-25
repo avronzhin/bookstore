@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book{
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +40,7 @@ public class Book{
     @ManyToOne
     private User publisher;
 
-    public String getGenresText(){
+    public String getGenresText() {
         return "Жанры: " +
                 genres.stream().map(Genre::getTitle).collect(Collectors.joining(", ")) +
                 ".";

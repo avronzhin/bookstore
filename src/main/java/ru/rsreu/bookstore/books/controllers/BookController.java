@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rsreu.bookstore.books.models.Book;
 import ru.rsreu.bookstore.books.models.BookSearch;
 import ru.rsreu.bookstore.books.models.ErrorMessage;
+import ru.rsreu.bookstore.books.models.Genre;
 import ru.rsreu.bookstore.books.repositories.BookRepository;
 
 import java.util.List;
