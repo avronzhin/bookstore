@@ -27,7 +27,7 @@ public class BookController {
     private static Predicate<Book> createSearchPredicate(BookSearch bookSearch) {
         return book -> {
             if (!bookSearch.getTitle().isEmpty()) {
-                if (!book.getTitle().contains(bookSearch.getTitle())) return false;
+                return book.getTitle().contains(bookSearch.getTitle());
             }
             if (!bookSearch.getAuthor().isEmpty()) {
                 return book.getAuthor().contains(bookSearch.getAuthor());
@@ -36,9 +36,9 @@ public class BookController {
                 return book.getGenres().stream()
                         .map(Genre::getTitle)
                         .collect(Collectors.toList())
-                        .contains(bookSearch.getGenre());
+                    .contains(bookSearch.getGenre());
             }
-            
+
             return true;
         };
     }
