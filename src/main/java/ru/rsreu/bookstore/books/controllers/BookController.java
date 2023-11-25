@@ -28,8 +28,8 @@ public class BookController {
             if (!bookSearch.getBookNameSearch().isEmpty()) {
                 if (!book.getName().contains(bookSearch.getBookNameSearch())) return false;
             }
-            if (!bookSearch.getAuthorSearch().isEmpty()) {
-                return book.getAuthor().contains(bookSearch.getAuthorSearch());
+            if (!bookSearch.getAuthor().isEmpty()) {
+                return book.getAuthor().contains(bookSearch.getAuthor());
             }
             return true;
         };

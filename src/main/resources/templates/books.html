@@ -11,8 +11,8 @@
     <div th:if="${bookSearch.bookNameSearch != ''}">
         <p>Поиск по названию книги: <a th:text="${bookSearch.bookNameSearch}"></a></p>
     </div>
-    <div th:if="${bookSearch.authorSearch != ''}">
-        <p>Поиск по автору: <a th:text="${bookSearch.authorSearch}"></a></p>
+    <div th:if="${bookSearch.getAuthor != ''}">
+        <p>Поиск по автору: <a th:text="${bookSearch.getAuthor}"></a></p>
     </div>
     <div>
         <span th:text="${errorMessage}" class="validationError"></span>
