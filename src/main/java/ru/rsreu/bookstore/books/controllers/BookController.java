@@ -25,8 +25,8 @@ public class BookController {
 
     private static Predicate<Book> createSearchPredicate(BookSearch bookSearch) {
         return book -> {
-            if (!bookSearch.getBookNameSearch().isEmpty()) {
-                if (!book.getName().contains(bookSearch.getBookNameSearch())) return false;
+            if (!bookSearch.getTitle().isEmpty()) {
+                if (!book.getTitle().contains(bookSearch.getTitle())) return false;
             }
             if (!bookSearch.getAuthor().isEmpty()) {
                 return book.getAuthor().contains(bookSearch.getAuthor());

@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import ru.rsreu.bookstore.security.models.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public class Book{
     private Long id;
 
     @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    private String name;
+    @NotEmpty
+    @Size(min = 1, message = "Name must be at least 5 characters long")
+    private String title;
 
     @NotNull
     @Size(min = 5, message = "Author must be at least 5 characters long")

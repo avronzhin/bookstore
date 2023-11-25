@@ -10,11 +10,11 @@
 <form method="post" th:object="${book}">
     <div class="container">
         <label>Имя
-            <input type="text" th:field="*{name}"/>
+            <input type="text" th:field="*{getTitle}"/>
         </label>
         <br/>
         <span class="validationError" th:if="${#fields.hasErrors('name')}"
-              th:errors="*{name}">Name error</span>
+              th:errors="*{getTitle}">Name error</span>
     </div>
     <div class="container">
         <label>Автор
