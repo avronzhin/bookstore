@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class BookSearch {
     private String bookNameSearch = "";
     private String authorSearch = "";
+    private String genre = "";
 }
