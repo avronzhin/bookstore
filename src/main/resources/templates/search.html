@@ -10,17 +10,17 @@
 <form method="get" action="/book/show" th:object="${bookSearch}">
     <div class="container">
         <label>Название книги
-            <input type="text" th:field="*{getTitle}"/>
+            <input type="text" th:field="*{title}"/>
         </label>
     </div>
     <div class="container">
         <label>Автор
-            <input type="text" th:field="*{getAuthor}"/>
+            <input type="text" th:field="*{author}"/>
         </label>
     </div>
     <div class="container">
         <label>Жанр
-            <input type="text" th:field="*{getGenre}"/>
+            <input type="text" th:field="*{genre}"/>
         </label>
     </div>
     <button>Поиск</button>

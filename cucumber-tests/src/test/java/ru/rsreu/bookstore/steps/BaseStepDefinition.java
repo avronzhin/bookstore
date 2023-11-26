@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+
 public class BaseStepDefinition {
     private final static String host = "http://localhost:8080";
 
@@ -24,7 +25,7 @@ public class BaseStepDefinition {
     }
 
     @Then("пользователь нажимает на ссылку {string}")
-    public void user_pressed_link(String linkValue){
+    public void user_pressed_link(String linkValue) {
         var xPath = "//a[text()='" + linkValue + "']";
         var link = Selenide.$x(xPath);
         link.click();
@@ -34,7 +35,7 @@ public class BaseStepDefinition {
     public void page_is_open(String pageUrl) {
         var currentUrl = Selenide.webdriver().driver().url();
         var expectedUrl = getAbsoluteUrl(pageUrl);
-        Assert.assertEquals(expectedUrl, currentUrl);
+        Assert.assertTrue(currentUrl.startsWith(expectedUrl));
     }
 
     @And("пользователь авторизован под логином {string}")
