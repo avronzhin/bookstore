@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import ru.rsreu.bookstore.security.models.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -15,15 +16,16 @@ import java.util.stream.Collectors;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book{
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    private String name;
+    @NotEmpty
+    @Size(min = 1, message = "Name must be at least 5 characters long")
+    private String title;
 
     @NotNull
     @Size(min = 5, message = "Author must be at least 5 characters long")
@@ -38,7 +40,7 @@ public class Book{
     @ManyToOne
     private User publisher;
 
-    public String getGenresText(){
+    public String getGenresText() {
         return "Жанры: " +
                 genres.stream().map(Genre::getTitle).collect(Collectors.joining(", ")) +
                 ".";

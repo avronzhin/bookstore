@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookSearch {
-    private String bookNameSearch = "";
-    private String authorSearch = "";
+    private String title = "";
+    private String author = "";
+    private String genre = "";
 }

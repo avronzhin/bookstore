@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rsreu.bookstore.books.models.Book;
 import ru.rsreu.bookstore.books.models.BookSearch;
 import ru.rsreu.bookstore.books.models.ErrorMessage;
+import ru.rsreu.bookstore.books.models.Genre;
 import ru.rsreu.bookstore.books.repositories.BookRepository;
 
 import java.util.List;
@@ -25,12 +26,19 @@ public class BookController {
 
     private static Predicate<Book> createSearchPredicate(BookSearch bookSearch) {
         return book -> {
-            if (!bookSearch.getBookNameSearch().isEmpty()) {
-                if (!book.getName().contains(bookSearch.getBookNameSearch())) return false;
+            if (!bookSearch.getTitle().isEmpty()) {
+                return book.getTitle().contains(bookSearch.getTitle());
             }
-            if (!bookSearch.getAuthorSearch().isEmpty()) {
-                return book.getAuthor().contains(bookSearch.getAuthorSearch());
+            if (!bookSearch.getAuthor().isEmpty()) {
+                return book.getAuthor().contains(bookSearch.getAuthor());
             }
+            if (!bookSearch.getGenre().isEmpty()) {
+                return book.getGenres().stream()
+                        .map(Genre::getTitle)
+                        .collect(Collectors.toList())
+                    .contains(bookSearch.getGenre());
+            }
+
             return true;
         };
     }

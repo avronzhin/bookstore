@@ -8,11 +8,11 @@
 <body>
 <div class="container">
     <h1>Книги</h1>
-    <div th:if="${bookSearch.bookNameSearch != ''}">
-        <p>Поиск по названию книги: <a th:text="${bookSearch.bookNameSearch}"></a></p>
+    <div th:if="${bookSearch.getTitle != ''}">
+        <p>Поиск по названию книги: <a th:text="${bookSearch.getTitle}"></a></p>
     </div>
-    <div th:if="${bookSearch.authorSearch != ''}">
-        <p>Поиск по автору: <a th:text="${bookSearch.authorSearch}"></a></p>
+    <div th:if="${bookSearch.getAuthor != ''}">
+        <p>Поиск по автору: <a th:text="${bookSearch.getAuthor}"></a></p>
     </div>
     <div>
         <span th:text="${errorMessage}" class="validationError"></span>
@@ -20,7 +20,7 @@
     <div th:each="book : ${books}">
         <div class="container">
             <h3>
-                <span th:text="${book.name}"></span> от <span th:text="${book.author}"></span>
+                <span th:text="${book.getTitle}"></span> от <span th:text="${book.author}"></span>
             </h3>
             Год выпуска: <span th:text="${book.publishYear}"></span><br/>
             <div th:if="${not #lists.isEmpty(book.genres)}">
