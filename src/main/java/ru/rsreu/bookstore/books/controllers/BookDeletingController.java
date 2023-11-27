@@ -34,7 +34,11 @@ public class BookDeletingController {
     }
 
     @PostMapping
-    public String delete(@RequestParam long bookId, @AuthenticationPrincipal User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+    public String delete(@RequestParam long bookId,
+                         @AuthenticationPrincipal User user,
+                         HttpServletRequest request,
+                         Model model,
+                         RedirectAttributes redirectAttributes) {
         Optional<Book> bookOptional = bookRepository.findById(bookId);
         if (!bookOptional.isPresent()) {
             model.addAttribute("errorMessage", new ErrorMessage("Книга не найдена"));
@@ -44,7 +48,7 @@ public class BookDeletingController {
                 bookRepository.deleteById(bookId);
             } else {
                 redirectAttributes.addFlashAttribute("errorMessage",
-                        new ErrorMessage("Вы не можете удалить эту книгу"));
+                                                     new ErrorMessage("Вы не можете удалить эту книгу"));
             }
         }
         String referer = request.getHeader("Referer");

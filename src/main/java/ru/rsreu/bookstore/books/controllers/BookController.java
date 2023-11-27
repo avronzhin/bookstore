@@ -27,16 +27,18 @@ public class BookController {
     private static Predicate<Book> createSearchPredicate(BookSearch bookSearch) {
         return book -> {
             if (!bookSearch.getTitle().isEmpty()) {
-                return book.getTitle().contains(bookSearch.getTitle());
+                if (!book.getTitle().contains(bookSearch.getTitle())) {
+                    return false;
+                }
             }
             if (!bookSearch.getAuthor().isEmpty()) {
-                return book.getAuthor().contains(bookSearch.getAuthor());
+                if (!book.getAuthor().contains(bookSearch.getAuthor())) {
+                    return false;
+                }
             }
             if (!bookSearch.getGenre().isEmpty()) {
-                return book.getGenres().stream()
-                        .map(Genre::getTitle)
-                        .collect(Collectors.toList())
-                    .contains(bookSearch.getGenre());
+                return book.getGenres().stream().map(Genre::getTitle).collect(Collectors.toList()).contains(
+                        bookSearch.getGenre());
             }
 
             return true;
@@ -49,7 +51,8 @@ public class BookController {
         model.addAttribute("bookSearch", bookSearch);
         Iterable<Book> allBooks = bookRepository.findAll();
         Predicate<Book> searchPredicate = createSearchPredicate(bookSearch);
-        List<Book> books = StreamSupport.stream(allBooks.spliterator(), false).filter(searchPredicate).collect(Collectors.toList());
+        List<Book> books = StreamSupport.stream(allBooks.spliterator(), false).filter(searchPredicate).collect(
+                Collectors.toList());
         model.addAttribute("books", books);
         return "books";
     }

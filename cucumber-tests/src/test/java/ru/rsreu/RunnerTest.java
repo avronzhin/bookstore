@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "ru.rsreu.bookstore.steps",
-        plugin = {"pretty", "html:target/cucumber",
-                "junit:target/surefire-reports/junit-report.xml"})
+        plugin = {"pretty", "html:target/cucumber", "junit:target/surefire-reports/junit-report.xml"}
+)
 public class RunnerTest {
 
 }

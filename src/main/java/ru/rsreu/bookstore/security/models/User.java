@@ -1,6 +1,9 @@
 package ru.rsreu.bookstore.security.models;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,14 +17,14 @@ import java.util.Collections;
 
 @Data
 @Entity(name = "users")
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @RequiredArgsConstructor
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
     private final String username;
     private final String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -7,12 +7,12 @@ import io.cucumber.java.AfterStep;
 
 public class AfterStepAction {
     @After
-    public void after(){
+    public void after() {
         Selenide.closeWebDriver();
     }
 
     @AfterStep
-    public void afterStep(){
+    public void afterStep() {
         Selenide.sleep(1000);
         String ignored = Selenide.screenshot("step" + System.currentTimeMillis());
     }

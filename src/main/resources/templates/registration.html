@@ -2,23 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Bookstore</title>
-  <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
+    <title>Bookstore</title>
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}"/>
 </head>
 <body>
 <h1>Регистрация</h1>
-<form method="POST" th:action="@{/register}" id="registerForm">
-  <div class="container">
-    <label for="username">Логин: </label>
-    <input type="text" name="username" id="username"/><br/>
-  </div>
-  <div class="container">
-    <label for="password">Пароль: </label>
-    <input type="password" name="password" id="password"/><br/>
-  </div>
-  <div class="container">
-    <input type="submit" value="Зарегистрироваться"/>
-  </div>
+<form id="registerForm" method="POST" th:action="@{/register}">
+    <div class="container">
+        <label for="username">Логин: </label>
+        <input id="username" name="username" type="text"/><br/>
+    </div>
+    <div class="container">
+        <label for="password">Пароль: </label>
+        <input id="password" name="password" type="password"/><br/>
+    </div>
+    <div class="container">
+        <input type="submit" value="Зарегистрироваться"/>
+    </div>
 </form>
 </body>
 </html>

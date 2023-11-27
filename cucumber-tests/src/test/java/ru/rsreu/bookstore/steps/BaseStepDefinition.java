@@ -76,4 +76,29 @@ public class BaseStepDefinition {
         var button = Selenide.$x(xPath);
         button.click();
     }
+
+    @And("происходит поиск по названию {string}")
+    public void title_search_is_displayed(String expectedTitle) {
+        var value = search_is_displayed("book-search-title");
+        Assert.assertEquals(expectedTitle, value);
+    }
+
+    @And("происходит поиск по автору {string}")
+    public void author_search_is_displayed(String expectedTitle) {
+        var value = search_is_displayed("book-search-author");
+        Assert.assertEquals(expectedTitle, value);
+    }
+
+    @And("происходит поиск по жанру {string}")
+    public void genre_search_is_displayed(String expectedTitle) {
+        var value = search_is_displayed("book-search-genre");
+        Assert.assertEquals(expectedTitle, value);
+    }
+
+    private String search_is_displayed(String id) {
+        var xPath = "//*[@id='" + id + "']";
+        var messageElement = Selenide.$x(xPath);
+        Assert.assertTrue(messageElement.isDisplayed());
+        return messageElement.text();
+    }
 }

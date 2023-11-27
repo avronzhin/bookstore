@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Bookstore</title>
-    <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}"/>
 </head>
 <body>
 <div class="container">
     <h1>Книги</h1>
     <div th:if="${bookSearch.getTitle != ''}">
-        <p>Поиск по названию книги: <a th:text="${bookSearch.getTitle}"></a></p>
+        <p>Поиск по названию книги: <a id="book-search-title" th:text="${bookSearch.getTitle}"></a></p>
     </div>
     <div th:if="${bookSearch.getAuthor != ''}">
-        <p>Поиск по автору: <a th:text="${bookSearch.getAuthor}"></a></p>
+        <p>Поиск по автору: <a id="book-search-author" th:text="${bookSearch.getAuthor}"></a></p>
+    </div>
+    <div th:if="${bookSearch.getGenre != ''}">
+        <p>Поиск по жанру: <a id="book-search-genre" th:text="${bookSearch.getGenre}"></a></p>
     </div>
     <div>
-        <span th:text="${errorMessage}" class="validationError"></span>
+        <span class="validationError" th:text="${errorMessage}"></span>
     </div>
     <div th:each="book : ${books}">
         <div class="container">
@@ -28,12 +31,14 @@
             </div>
             Опубликовал: <span th:text="${book.publisher.username}"></span>
             <form action="/book/delete" method="post">
-                <input type="hidden" name="bookId" th:value="${book.id}" />
+                <input name="bookId" th:value="${book.id}" type="hidden"/>
                 <button type="submit">Удалить</button>
             </form>
         </div>
     </div>
-        <a href="/book/add" class="button"><button>Добавить новую</button></a>
+    <a class="button" href="/book/add">
+        <button>Добавить новую</button>
+    </a>
 </div>
 </body>
 </html>
