@@ -1,6 +1,8 @@
 package ru.rsreu.bookstore.books.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 import ru.rsreu.bookstore.security.models.User;
 
@@ -15,31 +17,31 @@ import java.util.stream.Collectors;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book{
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    private String name;
+    @Size(min = 5, message = "Название книги должно содержать хотя бы 5 символов")
+    private String title;
 
     @NotNull
-    @Size(min = 5, message = "Author must be at least 5 characters long")
+    @Size(min = 5, message = "Имя автора должно содержать хотя бы 5 символов")
     private String author;
 
     @ManyToMany
     private List<Genre> genres = new ArrayList<>();
 
-    @Range(min = 1700, max = 2100, message = "Publish year must be between 1700 and 2100")
+    @Range(min = 1700, max = 2100, message = "Год публикации должен быть в диапазоне [1700, 2100]")
     private int publishYear = 2022;
 
     @ManyToOne
     private User publisher;
 
-    public String getGenresText(){
-        return "Genres: " +
+    public String getGenresText() {
+        return "Жанры: " +
                 genres.stream().map(Genre::getTitle).collect(Collectors.joining(", ")) +
                 ".";
     }

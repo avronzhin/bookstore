@@ -35,8 +35,8 @@ public class SecurityConfiguration {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/book/**/").hasAuthority("USER")
-                .antMatchers("/", "/**").permitAll()
+                .antMatchers("/", "/login", "/register", "/styles/**", "/images/**").permitAll()
+                .antMatchers("/**").hasAuthority("USER")
                 .and()
 
                 .formLogin()

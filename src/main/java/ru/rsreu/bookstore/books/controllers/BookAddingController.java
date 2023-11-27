@@ -61,6 +61,6 @@ public class BookAddingController {
 
         bookRepository.save(book);
         sessionStatus.setComplete();
-        return "redirect:/";
+        return "redirect:/book/show";
     }
 }

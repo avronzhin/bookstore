@@ -2,45 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add book</title>
-    <link th:href="@{/styles/stylesheet.css}" rel="stylesheet" />
+    <title>Добавление книги</title>
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}"/>
 </head>
 <body>
-<h1>Adding a new book</h1>
+<h1>Добавление книги</h1>
 <form method="post" th:object="${book}">
     <div class="container">
-        <label>Name
-            <input type="text" th:field="*{name}"/>
+        <label>Имя
+            <input th:field="*{title}" type="text"/>
         </label>
         <br/>
-        <span class="validationError" th:if="${#fields.hasErrors('name')}"
-              th:errors="*{name}">Name error</span>
+        <span class="validationError" th:errors="*{title}"
+              th:if="${#fields.hasErrors('title')}">Name error</span>
     </div>
     <div class="container">
-        <label>Author
-            <input type="text" th:field="*{author}"/>
+        <label>Автор
+            <input th:field="*{author}" type="text"/>
         </label><br/>
-        <span class="validationError" th:if="${#fields.hasErrors('author')}"
-              th:errors="*{author}">Author error</span>
+        <span class="validationError" th:errors="*{author}"
+              th:if="${#fields.hasErrors('author')}">Author error</span>
     </div>
     <div class="container">
-        <label>Genres
+        <label>Жанры
             <div th:each="genre : ${genres}">
-                <input th:field="*{genres}" type="checkbox" th:value="${genre.id}"/>
+                <input th:field="*{genres}" th:value="${genre.id}" type="checkbox"/>
                 <span th:text="${genre.title}"></span><br/>
             </div>
-            <span class="validationError" th:if="${#fields.hasErrors('genres')}"
-                  th:errors="*{genres}">Genres error</span>
+            <span class="validationError" th:errors="*{genres}"
+                  th:if="${#fields.hasErrors('genres')}">Genres error</span>
         </label>
     </div>
     <div class="container">
-        <label>Publish year
-            <input type="number" th:field="*{publishYear}"/>
+        <label>Год выпуска
+            <input th:field="*{publishYear}" type="number"/>
         </label><br/>
-        <span class="validationError" th:if="${#fields.hasErrors('publishYear')}"
-              th:errors="*{publishYear}">PublishYear error</span>
+        <span class="validationError" th:errors="*{publishYear}"
+              th:if="${#fields.hasErrors('publishYear')}">PublishYear error</span>
     </div>
-    <button>Add</button>
+    <button>Добавить</button>
 </form>
 </body>
 </html>

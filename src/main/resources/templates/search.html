@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книги</title>
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}"/>
+</head>
+<body>
+<h1>Поиск книги</h1>
+<form action="/book/show" method="get" th:object="${bookSearch}">
+    <div class="container">
+        <label>Название книги
+            <input th:field="*{title}" type="text"/>
+        </label>
+    </div>
+    <div class="container">
+        <label>Автор
+            <input th:field="*{author}" type="text"/>
+        </label>
+    </div>
+    <div class="container">
+        <label>Жанр
+            <input th:field="*{genre}" type="text"/>
+        </label>
+    </div>
+    <button>Поиск</button>
+</form>
+</body>
+</html>

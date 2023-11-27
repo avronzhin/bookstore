@@ -9,13 +9,17 @@ import ru.rsreu.bookstore.books.repositories.GenreRepository;
 @Configuration
 public class DataLoaderConfiguration {
     @Bean
-    public ApplicationRunner dataLoader(GenreRepository repo) {
+    public ApplicationRunner dataLoader(GenreRepository genreRepository) {
         return args -> {
-            repo.save(new Genre("DET", "detective"));
-            repo.save(new Genre("HN", "historical novel"));
-            repo.save(new Genre("LS", "love story"));
-            repo.save(new Genre("MY", "mystic"));
-            repo.save(new Genre("ADV", "adventures"));
+            loadGenres(genreRepository);
         };
+    }
+
+    private void loadGenres(GenreRepository genreRepository) {
+        genreRepository.save(new Genre("DET", "детектив"));
+        genreRepository.save(new Genre("HN", "исторический роман"));
+        genreRepository.save(new Genre("LS", "любовный роман"));
+        genreRepository.save(new Genre("MY", "мистика"));
+        genreRepository.save(new Genre("ADV", "приключения"));
     }
 }
